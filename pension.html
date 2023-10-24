@@ -2,36 +2,24 @@
 <html>
 
 <head>
-    <title>TensorFlow.js Tutorial - boston housing </title>
+    <title>TensorFlow.js Tutorial - lotto predict </title>
 
     <!-- Import TensorFlow.js -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis"></script>
-    <script src="10.3.js"></script>
+    <script type="module" src="pens.js"></script>
 </head>
 
 <body>
-    <script>
-        /*
-        var 보스톤_원인 = [
-            [0.00632,18,2.31,0,0.538,6.575,65.2,4.09,1,296,15.3,396.9,4.98],
-            [0.02731,0,7.07,0,0.469,6.421,78.9,4.9671,2,242,17.8,396.9,9.14]
-        ];
-        var 보스톤_결과 = [
-            [24], 
-            [21.6]
-        ];
-        */
-
+    <script type="module">
+        import { varCause, resultCor } from './pens.js';
         // 1. 과거의 데이터를 준비합니다. 
-        var 원인 = tf.tensor(보스톤_원인);
-        var 결과 = tf.tensor(보스톤_결과);
+        var 원인 = tf.tensor(varCause);
+        var 결과 = tf.tensor(resultCor);
 
         // 2. 모델의 모양을 만듭니다. 
-        var X = tf.input({ shape: [9] });
-        var H1 = tf.layers.dense({ units: 9, activation: 'relu' }).apply(X);
-        var H2 = tf.layers.dense({ units: 9, activation: 'relu' }).apply(H1);
-        var Y = tf.layers.dense({ units: 1 }).apply(H2);
+        var X = tf.input({ shape: [1] });
+        var Y = tf.layers.dense({ units: 1 }).apply(X);
         var model = tf.model({ inputs: X, outputs: Y });
         var compileParam = { optimizer: tf.train.adam(), loss: tf.losses.meanSquaredError }
         model.compile(compileParam);

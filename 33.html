@@ -1,0 +1,27 @@
+import { FormControl, InputLabel, Input } from '@material-ui/core';
+
+function LoginForm() {
+const [username, setUsername] = useState('');
+const [password, setPassword] = useState('');
+
+const handleSubmit = event => {
+event.preventDefault();
+// Submit the form data (e.g., to a server)
+};
+
+return (
+<form onSubmit={handleSubmit}>
+    <FormControl>
+        <InputLabel htmlFor="username">Username</InputLabel>
+        <Input id="username" type="text" value={username} onChange={event=> setUsername(event.target.value)}
+        />
+    </FormControl>
+    <FormControl>
+        <InputLabel htmlFor="password">Password</InputLabel>
+        <Input id="password" type="password" value={password} onChange={event=> setPassword(event.target.value)}
+        />
+    </FormControl>
+    <button type="submit">Log in</button>
+</form>
+);
+}
